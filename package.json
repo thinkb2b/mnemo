@@ -1,7 +1,7 @@
 {
   "name": "mnemo-intelligent-snippet",
   "version": "1.0.0",
-  "description": "Outlook Add-in with No-Build React",
+  "description": "Outlook Add-in with Babel Runtime",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
