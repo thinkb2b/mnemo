@@ -4,17 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mnemo Intelligent Snippets</title>
+    
+    <!-- Office.js -->
     <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    
+    <!-- Styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Babel Standalone -->
+    
+    <!-- Babel for in-browser compilation -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
-    <!-- Import Map: Cleaned up to use only React 18 -->
+    <!-- Import Map: FIXED - Removed React 19 conflicts -->
     <script type="importmap">
 {
   "imports": {
-    "@google/genai": "https://esm.sh/@google/genai@^1.33.0",
-    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
+    "@google/genai": "https://esm.sh/@google/genai@0.1.1",
+    "lucide-react": "https://esm.sh/lucide-react@0.292.0?external=react",
     "react": "https://esm.sh/react@18.2.0",
     "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
@@ -23,31 +28,37 @@
 }
 </script>
 
-    <!-- API Key Konfiguration -->
+    <!-- API Key Config & Error Handler -->
     <script>
-      // HIER API KEY EINFÜGEN
-			const MY_API_KEY = "AIzaSyB6sl23WJaAOt789_12b5VTe-LdDzLP5BA";
+      const MY_API_KEY = "HIER_IHREN_GOOGLE_GEMINI_API_KEY_EINFÜGEN";
 
-      // Polyfill für process.env im Browser
       window.process = {
-        env: {
-          API_KEY: MY_API_KEY
+        env: { API_KEY: MY_API_KEY }
+      };
+
+      // Global Error Handler
+      window.onerror = function(message, source, lineno, colno, error) {
+        console.error("Global Error:", message, error);
+        const loader = document.getElementById('loading-screen');
+        if (loader) {
+            loader.innerHTML = `
+                <div style="color: #ef4444; text-align: center; padding: 20px; font-family: sans-serif;">
+                    <h3 style="margin-top:0">Fehler beim Starten</h3>
+                    <p>${message}</p>
+                    <small style="color: #666;">${source}:${lineno}</small>
+                </div>
+            `;
         }
       };
-      
-      // Sicherheits-Check
-      if (!MY_API_KEY || MY_API_KEY.includes("HIER_IHREN")) {
-        console.warn("⚠️ ACHTUNG: Kein gültiger API Key in index.html gefunden.");
-      }
     </script>
+
     <style>
       body {
         background-color: #f3f4f6;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
       }
-      ::-webkit-scrollbar { width: 6px; }
-      ::-webkit-scrollbar-track { background: transparent; }
-      ::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 3px; }
       .loader {
         border: 4px solid #f3f3f3;
         border-top: 4px solid #3b82f6;
@@ -75,10 +86,8 @@
             <p style="margin-top: 1rem;">Mnemo wird geladen...</p>
         </div>
     </div>
-    <!-- 
-      Startet die App via index.tsx. 
-      Wichtig: data-presets für TypeScript/React Unterstützung. 
-    -->
+    
+    <!-- Load the main app logic -->
     <script type="text/babel" data-presets="typescript,react" data-type="module" src="./index.tsx"></script>
   </body>
 </html>
