@@ -3,18 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SmartSnippet Outlook Add-in</title>
-    
-    <!-- Office.js: Notwendig für die Interaktion mit Outlook -->
+    <title>Mneomo Intelligent Snippets</title>
     <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
-    
-    <!-- Tailwind CSS für das Styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Babel Standalone: WICHTIG! Übersetzt .tsx Dateien direkt im Browser -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-    <!-- Import Maps: Sagt dem Browser, wo er 'react' und andere Libraries findet -->
     <script type="importmap">
 {
   "imports": {
@@ -30,10 +22,6 @@
 
     <!-- API Key Konfiguration -->
     <script>
-      // =================================================================
-      // SCHRITT 1: Fügen Sie hier Ihren Google Gemini API Key ein.
-      // Erhältlich unter: https://aistudio.google.com/app/apikey
-      // =================================================================
       const MY_API_KEY = "AIzaSyB6sl23WJaAOt789_12b5VTe-LdDzLP5BA";
 
       // Wir simulieren hier die Prozess-Umgebung für den Code
@@ -47,7 +35,6 @@
         console.warn("⚠️ ACHTUNG: Kein gültiger API Key in index.html gefunden.");
       }
     </script>
-
     <style>
       body {
         background-color: #f3f4f6;
@@ -78,18 +65,11 @@
   </head>
   <body>
     <div id="root">
-        <!-- Ladebildschirm, bis React übernimmt -->
         <div id="loading-screen">
             <div class="loader"></div>
-            <p style="margin-top: 1rem;">SmartSnippet wird geladen...</p>
+            <p style="margin-top: 1rem;">Mnemo wird geladen...</p>
         </div>
     </div>
-    
-    <!-- 
-      WICHTIG: Hier laden wir die App.
-      type="text/babel": Sagt dem Browser, dass Babel diesen Code verarbeiten muss.
-      data-presets: Aktiviert React und TypeScript Unterstützung.
-    -->
     <script type="text/babel" data-presets="typescript,react" data-type="module" src="./index.tsx"></script>
   </body>
 </html>

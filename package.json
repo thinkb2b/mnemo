@@ -1,5 +1,5 @@
 {
-  "name": "outlook-snippet-tool",
+  "name": "mnemo-intelligent-snippet",
   "version": "1.0.0",
   "description": "Outlook Add-in with No-Build React",
   "main": "server.js",

@@ -9,9 +9,9 @@
   <!-- Basic Settings -->
   <Id>a7c3e8d2-4b1f-4e9a-8c5d-1a2b3c4d5e6f</Id>
   <Version>1.0.0.1</Version>
-  <ProviderName>SmartSnippet Dev</ProviderName>
+  <ProviderName>Mnemo Dev</ProviderName>
   <DefaultLocale>de-DE</DefaultLocale>
-  <DisplayName DefaultValue="SmartSnippet Textbausteine" />
+  <DisplayName DefaultValue="Mnemo Intelligent Snippets" />
   <Description DefaultValue="Verwalten und Einfügen von Textbausteinen mit KI-Unterstützung." />
   
   <!-- Updated URLs for Render.com -->
@@ -123,13 +123,13 @@
         <bt:Url id="taskpaneUrl" DefaultValue="https://mnemo-xmf7.onrender.com/index.html" />
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="groupLabel" DefaultValue="SmartSnippet" />
-        <bt:String id="paneReadButtonLabel" DefaultValue="Bausteine öffnen" />
-        <bt:String id="paneComposeButtonLabel" DefaultValue="Bausteine einfügen" />
+        <bt:String id="groupLabel" DefaultValue="Snippets" />
+        <bt:String id="paneReadButtonLabel" DefaultValue="Snippets öffnen" />
+        <bt:String id="paneComposeButtonLabel" DefaultValue="Snippets einfügen" />
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="paneReadButtonDesc" DefaultValue="Öffnen Sie die SmartSnippet-Bibliothek, um Texte zu kopieren." />
-        <bt:String id="paneComposeButtonDesc" DefaultValue="Öffnen Sie die SmartSnippet-Bibliothek, um Textbausteine einzufügen." />
+        <bt:String id="paneReadButtonDesc" DefaultValue="Öffnen Sie die Mnemo-Bibliothek, um Texte zu kopieren." />
+        <bt:String id="paneComposeButtonDesc" DefaultValue="Öffnen Sie die Mnemo-Bibliothek, um Textbausteine einzufügen." />
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>

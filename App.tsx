@@ -195,7 +195,7 @@ export default function App() {
   };
 
   const handleDelete = (id: string) => {
-    if (confirm('Möchten Sie diesen Baustein wirklich löschen?')) {
+    if (confirm('Möchten Sie dieses Snippet wirklich löschen?')) {
       setSnippets(prev => prev.filter(s => s.id !== id));
       if (view === 'FILL_VARS') setView('LIST');
     }
@@ -268,7 +268,7 @@ export default function App() {
   };
 
   const handleDeleteGroup = (id: string) => {
-    if (confirm('Möchten Sie diese Kategorie löschen? Bausteine in dieser Kategorie bleiben erhalten, verlieren aber ihre Zuordnung.')) {
+    if (confirm('Möchten Sie diese Kategorie löschen? Snippets in dieser Kategorie bleiben erhalten, verlieren aber ihre Zuordnung.')) {
       setGroups(groups.filter(g => g.id !== id));
       if (selectedGroup === id) setSelectedGroup(null);
       // Reset edit state if we deleted the group being edited
@@ -376,7 +376,7 @@ export default function App() {
       <button 
         onClick={() => setView('LIST')}
         className={`p-2 rounded-xl transition-all ${view === 'LIST' ? 'bg-blue-100 text-blue-600' : 'text-gray-400 hover:bg-gray-100'}`}
-        title="Bausteine"
+        title="Snippets"
       >
         <Layout className="w-6 h-6" />
       </button>
@@ -599,7 +599,7 @@ export default function App() {
         <div className="flex-1 overflow-y-auto p-4 space-y-3">
           {filtered.length === 0 ? (
             <div className="text-center text-gray-500 mt-10">
-              <p>Keine Bausteine gefunden.</p>
+              <p>Keine Snippets gefunden.</p>
               <Button variant="ghost" className="mt-2" onClick={handleCreate}>Jetzt erstellen</Button>
             </div>
           ) : (
@@ -655,7 +655,7 @@ export default function App() {
         <button onClick={() => setView('LIST')} className="text-gray-500 hover:text-gray-700">
           <ArrowLeft className="w-5 h-5" />
         </button>
-        <h2 className="font-bold text-lg">{view === 'CREATE' ? 'Neuer Baustein' : 'Baustein bearbeiten'}</h2>
+        <h2 className="font-bold text-lg">{view === 'CREATE' ? 'Neues Snippet' : 'Snippet bearbeiten'}</h2>
         <Button onClick={handleSave} disabled={!editorData.title}>Speichern</Button>
       </div>
 
@@ -667,7 +667,7 @@ export default function App() {
             <Sparkles className="w-4 h-4" />
             <span className="text-sm">KI-Assistent</span>
           </div>
-          <p className="text-xs text-indigo-600 mb-3">Beschreibe den gewünschten Baustein und lass ihn generieren.</p>
+          <p className="text-xs text-indigo-600 mb-3">Beschreibe das gewünschte Snippet und lass es generieren.</p>
           <div className="flex gap-2">
             <input 
               type="text" 
@@ -764,7 +764,7 @@ export default function App() {
         <div className="p-6 flex-1 overflow-y-auto">
           <div className="mb-6 bg-gray-50 p-4 rounded border border-gray-200">
             <h3 className="text-sm font-semibold text-gray-700 mb-1">{currentSnippet.title}</h3>
-            <p className="text-xs text-gray-500">Dieser Baustein enthält Platzhalter, die vor dem Einfügen ausgefüllt werden müssen.</p>
+            <p className="text-xs text-gray-500">Dieses Snippet enthält Platzhalter, die vor dem Einfügen ausgefüllt werden müssen.</p>
           </div>
 
           <div className="space-y-4">
@@ -819,7 +819,7 @@ export default function App() {
         <section>
           <h3 className="font-bold text-lg text-gray-900 mb-2">Features im Prototyp</h3>
           <ul className="list-disc pl-5 space-y-1 text-gray-600">
-            <li><strong>Textbausteine verwalten:</strong> Erstellen, Bearbeiten, Löschen, Gruppieren.</li>
+            <li><strong>Snippets verwalten:</strong> Erstellen, Bearbeiten, Löschen, Gruppieren.</li>
             <li><strong>Variablen-Engine:</strong> Automatische Erkennung von {'{Platzhaltern}'} und Prompting beim Einfügen.</li>
             <li><strong>KI-Integration:</strong> Gemini API Anbindung zur Generierung von Texten.</li>
             <li><strong>Konto-Simulation:</strong> Auswahl der Absender-Identität (Signatur-Wechsel).</li>

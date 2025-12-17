@@ -1,5 +1,5 @@
 {
-  "name": "SmartSnippet Outlook Add-in",
-  "description": "Ein Outlook-Plugin-Prototyp zur Verwaltung und Einfügung von Textbausteinen mit Variablen und KI-Unterstützung.",
+  "name": "Mnemo Intelligent Snippets",
+  "description": "Ein Outlook-Plugin zum Verwalten und Einfügen von Textbausteinen mit Variablen und KI-Unterstützung.",
   "requestFramePermissions": []
 }
