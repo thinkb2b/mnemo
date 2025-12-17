@@ -3,10 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mneomo Intelligent Snippets</title>
+    <title>Mnemo Intelligent Snippets</title>
     <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Babel Standalone -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Import Map: Cleaned up to use only React 18 -->
     <script type="importmap">
 {
   "imports": {
@@ -22,15 +25,17 @@
 
     <!-- API Key Konfiguration -->
     <script>
-      const MY_API_KEY = "AIzaSyB6sl23WJaAOt789_12b5VTe-LdDzLP5BA";
+      // HIER API KEY EINFÜGEN
+			const MY_API_KEY = "AIzaSyB6sl23WJaAOt789_12b5VTe-LdDzLP5BA";
 
-      // Wir simulieren hier die Prozess-Umgebung für den Code
+      // Polyfill für process.env im Browser
       window.process = {
         env: {
           API_KEY: MY_API_KEY
         }
       };
-
+      
+      // Sicherheits-Check
       if (!MY_API_KEY || MY_API_KEY.includes("HIER_IHREN")) {
         console.warn("⚠️ ACHTUNG: Kein gültiger API Key in index.html gefunden.");
       }
@@ -70,6 +75,10 @@
             <p style="margin-top: 1rem;">Mnemo wird geladen...</p>
         </div>
     </div>
+    <!-- 
+      Startet die App via index.tsx. 
+      Wichtig: data-presets für TypeScript/React Unterstützung. 
+    -->
     <script type="text/babel" data-presets="typescript,react" data-type="module" src="./index.tsx"></script>
   </body>
 </html>

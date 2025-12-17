@@ -20,8 +20,10 @@ import {
   Link,
   Link2Off
 } from 'lucide-react';
-import { Snippet, Group, ViewState, SnippetFormData, SenderAccount } from './types';
-import { generateSnippet, improveText } from './services/geminiService';
+
+// WICHTIG: Dateiendungen .ts hinzufügen
+import { Snippet, Group, ViewState, SnippetFormData, SenderAccount } from './types.ts';
+import { generateSnippet, improveText } from './services/geminiService.ts';
 
 // --- Constants & Mock Data ---
 

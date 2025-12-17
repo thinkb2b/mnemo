@@ -11,11 +11,11 @@ app.use((req, res, next) => {
   next();
 });
 
-// WICHTIG: Explizit den Content-Type für .tsx Dateien setzen,
+// WICHTIG: Explizit den Content-Type für .tsx UND .ts Dateien setzen,
 // damit Babel im Browser sie korrekt laden kann.
 app.use(express.static(__dirname, {
   setHeaders: (res, filePath) => {
-    if (filePath.endsWith('.tsx')) {
+    if (filePath.endsWith('.tsx') || filePath.endsWith('.ts')) {
       res.set('Content-Type', 'text/plain');
     }
   }

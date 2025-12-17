@@ -1,10 +1,15 @@
 import { GoogleGenAI } from "@google/genai";
-import { SnippetFormData } from "../types";
+// WICHTIG: Explizite Dateiendung für Browser-Importe
+import { SnippetFormData } from "../types.ts";
 
 const getAiClient = () => {
-  const apiKey = process.env.API_KEY;
-  if (!apiKey) {
-    throw new Error("API Key is missing. Please check your environment variables.");
+  // Zugriff auf globale Variable, die in index.html gesetzt wurde
+  const apiKey = (window as any).process?.env?.API_KEY;
+  
+  if (!apiKey || apiKey.includes("HIER_IHREN")) {
+    console.error("API Key missing or invalid.");
+    // Wir werfen hier keinen harten Fehler beim Init, damit die App nicht crasht,
+    // sondern erst beim Aufruf der Funktion.
   }
   return new GoogleGenAI({ apiKey });
 };
