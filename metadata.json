@@ -1,0 +1,5 @@
+{
+  "name": "SmartSnippet Outlook Add-in",
+  "description": "Ein Outlook-Plugin-Prototyp zur Verwaltung und Einfügung von Textbausteinen mit Variablen und KI-Unterstützung.",
+  "requestFramePermissions": []
+}

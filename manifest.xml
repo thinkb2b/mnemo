@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp
+          xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+          xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides"
+          xsi:type="MailApp">
+
+  <!-- Basic Settings: ID must be a unique GUID -->
+  <Id>a7c3e8d2-4b1f-4e9a-8c5d-1a2b3c4d5e6f</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>SmartSnippet Dev</ProviderName>
+  <DefaultLocale>de-DE</DefaultLocale>
+  <DisplayName DefaultValue="SmartSnippet Textbausteine" />
+  <Description DefaultValue="Verwalten und Einfügen von Textbausteinen mit KI-Unterstützung." />
+  <IconUrl DefaultValue="https://outlook.vonfor.de/assets/icon-64.png" />
+  <HighResolutionIconUrl DefaultValue="https://outlook.vonfor.de/assets/icon-128.png" />
+  <SupportUrl DefaultValue="https://outlook.vonfor.de/help" />
+  <AppDomains>
+    <AppDomain>https://outlook.vonfor.de</AppDomain>
+  </AppDomains>
+
+  <!-- Hosts: Runs in Mailbox -->
+  <Hosts>
+    <Host Name="Mailbox" />
+  </Hosts>
+
+  <!-- Requirements: Minimum API version -->
+  <Requirements>
+    <Sets>
+      <Set Name="Mailbox" MinVersion="1.1" />
+    </Sets>
+  </Requirements>
+
+  <!-- Form Settings: The URL where your React app is hosted -->
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://outlook.vonfor.de/index.html" />
+        <RequestedHeight>250</RequestedHeight>
+      </DesktopSettings>
+    </Form>
+    <Form xsi:type="ItemEdit">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://outlook.vonfor.de/index.html" />
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
+
+  <!-- Permissions: ReadWriteItem is needed to insert text into body -->
+  <Permissions>ReadWriteItem</Permissions>
+
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Edit" />
+    <Rule xsi:type="ItemIs" ItemType="Appointment" FormType="Edit" />
+  </Rule>
+
+  <DisableEntityHighlighting>false</DisableEntityHighlighting>
+
+  <!-- Version Overrides: Defines the Ribbon Button -->
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="MailHost">
+        <DesktopFormFactor>
+          <FunctionFile resid="funcUrl" />
+          <ExtensionPoint xsi:type="MessageReadCommandSurface">
+            <OfficeTab id="TabDefault">
+              <Group id="msgReadGroup">
+                <Label resid="groupLabel" />
+                <Control xsi:type="Button" id="msgReadOpenPaneButton">
+                  <Label resid="paneReadButtonLabel" />
+                  <Supertip>
+                    <Title resid="paneReadButtonLabel" />
+                    <Description resid="paneReadButtonDesc" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="icon16" />
+                    <bt:Image size="32" resid="icon32" />
+                    <bt:Image size="80" resid="icon80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <SourceLocation resid="taskpaneUrl" />
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+          
+          <!-- This adds the button to the "Compose" window (New Email) -->
+          <ExtensionPoint xsi:type="MessageComposeCommandSurface">
+            <OfficeTab id="TabDefault">
+              <Group id="msgComposeGroup">
+                <Label resid="groupLabel" />
+                <Control xsi:type="Button" id="msgComposeOpenPaneButton">
+                  <Label resid="paneComposeButtonLabel" />
+                  <Supertip>
+                    <Title resid="paneComposeButtonLabel" />
+                    <Description resid="paneComposeButtonDesc" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="icon16" />
+                    <bt:Image size="32" resid="icon32" />
+                    <bt:Image size="80" resid="icon80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <SourceLocation resid="taskpaneUrl" />
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    
+    <Resources>
+      <bt:Images>
+        <bt:Image id="icon16" DefaultValue="https://outlook.vonfor.de/assets/icon-16.png" />
+        <bt:Image id="icon32" DefaultValue="https://outlook.vonfor.de/assets/icon-32.png" />
+        <bt:Image id="icon80" DefaultValue="https://outlook.vonfor.de/assets/icon-80.png" />
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="funcUrl" DefaultValue="https://outlook.vonfor.de/index.html" />
+        <bt:Url id="taskpaneUrl" DefaultValue="https://outlook.vonfor.de/index.html" />
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="groupLabel" DefaultValue="SmartSnippet" />
+        <bt:String id="paneReadButtonLabel" DefaultValue="Bausteine öffnen" />
+        <bt:String id="paneComposeButtonLabel" DefaultValue="Bausteine einfügen" />
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="paneReadButtonDesc" DefaultValue="Öffnen Sie die SmartSnippet-Bibliothek, um Texte zu kopieren." />
+        <bt:String id="paneComposeButtonDesc" DefaultValue="Öffnen Sie die SmartSnippet-Bibliothek, um Textbausteine einzufügen." />
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>
