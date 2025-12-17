@@ -4,30 +4,58 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SmartSnippet Outlook Add-in</title>
-    <!-- 
-      IMPORTANT: Office.js is required for the app to interact with Outlook.
-      We load it here. The React app handles initialization asynchronously.
-    -->
+    
+    <!-- Office.js: Notwendig für die Interaktion mit Outlook -->
     <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
     
+    <!-- Tailwind CSS für das Styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Babel Standalone: WICHTIG! Übersetzt .tsx Dateien direkt im Browser -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Import Maps: Sagt dem Browser, wo er 'react' und andere Libraries findet -->
+    <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.33.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+
+    <!-- API Key Konfiguration -->
+    <script>
+      // =================================================================
+      // SCHRITT 1: Fügen Sie hier Ihren Google Gemini API Key ein.
+      // Erhältlich unter: https://aistudio.google.com/app/apikey
+      // =================================================================
+      const MY_API_KEY = "AIzaSyB6sl23WJaAOt789_12b5VTe-LdDzLP5BA";
+
+      // Wir simulieren hier die Prozess-Umgebung für den Code
+      window.process = {
+        env: {
+          API_KEY: MY_API_KEY
+        }
+      };
+
+      if (!MY_API_KEY || MY_API_KEY.includes("HIER_IHREN")) {
+        console.warn("⚠️ ACHTUNG: Kein gültiger API Key in index.html gefunden.");
+      }
+    </script>
+
     <style>
       body {
         background-color: #f3f4f6;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       }
-      /* Custom scrollbar for taskpane feel */
-      ::-webkit-scrollbar {
-        width: 6px;
-      }
-      ::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      ::-webkit-scrollbar-thumb {
-        background-color: #cbd5e1;
-        border-radius: 3px;
-      }
-      /* Loading Spinner */
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 3px; }
       .loader {
         border: 4px solid #f3f3f3;
         border-top: 4px solid #3b82f6;
@@ -37,10 +65,7 @@
         animation: spin 1s linear infinite;
         margin: 0 auto;
       }
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
+      @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
       #loading-screen {
         display: flex;
         flex-direction: column;
@@ -50,30 +75,21 @@
         color: #64748b;
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "@google/genai": "https://esm.sh/@google/genai@^1.33.0",
-    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
-  }
-}
-</script>
-</head>
+  </head>
   <body>
     <div id="root">
-        <!-- Fallback Loading Screen -->
+        <!-- Ladebildschirm, bis React übernimmt -->
         <div id="loading-screen">
             <div class="loader"></div>
             <p style="margin-top: 1rem;">SmartSnippet wird geladen...</p>
         </div>
     </div>
+    
     <!-- 
-      CRITICAL: This script tag starts the React application. 
-      Without it, the page remains white.
+      WICHTIG: Hier laden wir die App.
+      type="text/babel": Sagt dem Browser, dass Babel diesen Code verarbeiten muss.
+      data-presets: Aktiviert React und TypeScript Unterstützung.
     -->
-    <script type="module" src="./index.tsx"></script>
+    <script type="text/babel" data-presets="typescript,react" data-type="module" src="./index.tsx"></script>
   </body>
 </html>
